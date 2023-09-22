@@ -5,7 +5,6 @@ import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {register} from "../../../store/actions";
 import {RegisterRequestInterface} from "../../../types/registerRequest.interface";
-import {AuthStateInterface} from "../../../types/authState.interface";
 import {selectIsSubmitting} from "../../../store/reducers";
 
 @Component({
@@ -22,7 +21,10 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
   isSubmitting$ = this.store.select(selectIsSubmitting);
-  constructor(private fb: FormBuilder, private store: Store<{auth: AuthStateInterface}>) { }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+  ) { }
   onSubmit(): void {
     console.log('form:', this.form.getRawValue());
     const request: RegisterRequestInterface = {

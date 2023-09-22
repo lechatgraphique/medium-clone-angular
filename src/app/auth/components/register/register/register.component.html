@@ -20,7 +20,7 @@
         Remember me
       </label>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
+    <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="isSubmitting$ | async">Sign up</button>
     <p class="mt-2 text-center">
       <a routerLink="/login">Have an account ?</a>
     </p>

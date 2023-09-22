@@ -8,7 +8,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {PersistenceService} from "../../shared/services/persistance.service";
 
 export const registerEffect = createEffect(
-  (actions$ = inject(Actions), authService = inject(AuthService), persistenceService = inject(PersistenceService)) => {
+  (
+    actions$= inject(Actions),
+    authService= inject(AuthService),
+    persistenceService= inject(PersistenceService)) => {
     return actions$.pipe(
       ofType(authActions.register),
       switchMap(({request}) => {

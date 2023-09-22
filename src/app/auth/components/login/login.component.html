@@ -1,0 +1,26 @@
+<ng-container *ngIf="data$ | async as data">
+    <main class="form-login w-100 m-auto">
+        <form data-bitwarden-watching="1" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h1 class="h3 mb-3 fw-normal">Please login</h1>
+            <mc-backend-errors-messages *ngIf="data.backendErrors" [backendErrors]="data.backendErrors"></mc-backend-errors-messages>
+            <div class="form-floating mb-2">
+                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Email" formControlName="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-check text-start my-3">
+                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Remember me
+                </label>
+            </div>
+            <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="data.isSubmitting">Sign in</button>
+            <p class="mt-2 text-center">
+                <a routerLink="/register">Need an account ?</a>
+            </p>
+        </form>
+    </main>
+</ng-container>

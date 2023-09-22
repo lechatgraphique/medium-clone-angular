@@ -1,0 +1,37 @@
+<ng-container *ngIf="data$ | async as data">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/">Realworld</a>
+            <span class="navbar-text">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+                    </li>
+                    <ng-container *ngIf="data.currentUser">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/articles/new">New post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/settings">Settings</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <img [src]="data.currentUser.image" alt="{{data.currentUser.image}}" class="rounded-circle" width="20">
+                            <a class="nav-link" [routerLink]="['/profiles', data.currentUser.username]">
+                                {{data.currentUser.username}}
+                            </a>
+                        </li>
+                    </ng-container>
+                    <ng-container *ngIf="data.currentUser === null">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/login">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/register">Sign up</a>
+                        </li>
+                    </ng-container>
+                </ul>
+            </span>
+        </div>
+    </nav>
+
+</ng-container>

@@ -7,7 +7,7 @@ import {routerNavigationAction} from "@ngrx/router-store";
 const initialState: AuthStateInterface = {
   isSubmitting: false,
   isLoading: false,
-  currentUser: undefined,
+  currentUser: null,
   validationErrors: null
 }
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PersistanceService } from './persistance.service';
+import { PersistenceService } from './persistance.service';
 
 describe('PersistanceService', () => {
-  let service: PersistanceService;
+  let service: PersistenceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PersistanceService);
+    service = TestBed.inject(PersistenceService);
   });
 
   it('should be created', () => {

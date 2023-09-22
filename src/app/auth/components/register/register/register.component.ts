@@ -5,12 +5,16 @@ import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {authActions} from "../../../store/actions";
 import {RegisterRequestInterface} from "../../../types/registerRequest.interface";
-import {selectIsSubmitting} from "../../../store/reducers";
+import {selectIsSubmitting, selectValidationErrors} from "../../../store/reducers";
+import {combineLatest} from "rxjs";
+import {
+  BackendErrorsMessagesComponent
+} from "../../../../shared/components/backend-errors-messages/backend-errors-messages.component";
 
 @Component({
   selector: 'mc-register',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, BackendErrorsMessagesComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -20,7 +24,10 @@ export class RegisterComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-  isSubmitting$ = this.store.select(selectIsSubmitting);
+  data$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmitting),
+    backendErrors: this.store.select(selectValidationErrors)
+  })
   constructor(
     private fb: FormBuilder,
     private store: Store,
